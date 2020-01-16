@@ -10,9 +10,9 @@ abstract class AbstractFilter
 {
     protected $attributes = [];
 
-    public function __construct(array $attributes = [])
+    public function __construct(array $attributes = null)
     {
-        if (empty($attributes)) {
+        if (is_null($attributes)) {
             $attributes = request()->all();
         }
 
