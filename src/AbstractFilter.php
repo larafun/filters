@@ -18,10 +18,10 @@ abstract class AbstractFilter
 
         $this->validate($attributes);
 
-        $this->attributes = array_merge(
+        $this->attributes = $this->format(array_merge(
             $this->defaults(),
-            $attributes
-        );
+            $this->sanitize($attributes)
+        ));
     }
 
     abstract public function defaults(): array;
@@ -30,6 +30,16 @@ abstract class AbstractFilter
     public function rules()
     {
         return [];
+    }
+
+    protected function sanitize(array $attributes = []): array
+    {
+        return $attributes;
+    }
+
+    protected function format(array $attributes = []): array
+    {
+        return $attributes;
     }
 
     public function all()
